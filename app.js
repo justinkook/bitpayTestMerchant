@@ -33,8 +33,7 @@
                 },
                 body: JSON.stringify(invoice)
               };
-            const { data } = await axios(authOptions);
-            const { id } = data;
+            const { id } = await axios(authOptions);
             console.log(id);
             // Modal
             showInvoice(id);

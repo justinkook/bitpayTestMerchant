@@ -1,7 +1,6 @@
 (function() {
     const bitpayForm = document.getElementById('bitpayButton');
-    bitpayForm.addEventListener('click', generateInvoice);
-    const redirectURL = 'https://justinkook.github.io/bitpayTestMerchant'
+    const redirectURL = 'https://justinkook.github.io/bitpayTestMerchant';
     const invoice = {
         currency: 'USD',
         price: 120.2,
@@ -20,6 +19,7 @@
         // ],
       };
 
+    bitpayForm.addEventListener('click', generateInvoice);
     async function generateInvoice(event) {
         event.preventDefault();
         try {
@@ -36,12 +36,33 @@
             const { data } = await axios(authOptions);
             const { id } = data;
             console.log(id);
-            // No Modal
-            // window.location.replace(`${redirectURL}/invoice?v=3&id=${result.id}&lang=en-US`);
             // Modal
-            bitpay.showInvoice(id);
+            showInvoice(id);
         } catch (err) {
             console.log(err);
         }
+    }
+
+    function showInvoice(id) {
+        let is_paid = false
+        window.addEventListener("message", function (event) {
+            payment_status = event.data.status;
+            if (payment_status == "paid") {
+                is_paid = true
+                alert('successfully paid!');
+                //take action PAID
+            return;
+            } 
+        }, false);
+        //show the order info
+        bitpay.onModalWillLeave(function () {
+            if (is_paid == false) {
+                alert('Are you sure you want to leave?');
+                //take action, NOT PAID
+            } //endif
+        });
+        //show the modal
+        bitpay.enableTestMode();
+        bitpay.showInvoice(id);
     }
 })();

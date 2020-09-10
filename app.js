@@ -1,6 +1,6 @@
 (function() {
     const bitpayForm = document.getElementById('bitpayButton');
-    bitpayForm.addEventListener('click', generateInvoice);
+    // bitpayForm.addEventListener('click', generateInvoice);
 
     async function generateInvoice(event) {
         event.preventDefault();

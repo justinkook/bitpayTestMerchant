@@ -25,7 +25,7 @@
         try {
             const authOptions = {
                 method: 'POST',
-                url: 'http://testinvoice.b-pay.net/invoice',
+                url: 'https://testinvoice.b-pay.net/invoice',
                 headers: {
                     'Authorization': 'Bearer RjZLS2pyUkd1elNONUh3N1NLUXRBRjJmVExXRFZzb3BaSkVWdUpnajZuZlI6',
                     'Content-Type': 'application/json',

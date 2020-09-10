@@ -1,4 +1,5 @@
-const bitpayButton = document.getElementById('bitpayButton')
+const bitpayButton = document.getElementById('bitpayButton');
+
 bitpayButton.addEventListener('click', generateInvoice);
 
 async function generateInvoice(event) {
@@ -23,7 +24,7 @@ async function generateInvoice(event) {
                 'x-accept-version': '2.0.0'
             },
             body: JSON.stringify(invoice)
-            };
+        };
         const { data } = await axios(authOptions);
         const { id } = data;
         // Modal
@@ -31,7 +32,7 @@ async function generateInvoice(event) {
     } catch (err) {
         console.log(err);
     }
-}
+};
 
 function showInvoice(id) {
     let is_paid = false
@@ -44,11 +45,11 @@ function showInvoice(id) {
             paidScreen.className = 'show';
             // After 3 seconds, remove the show class from DIV
             setTimeout(function () {
-                paidScreen.className = paidScreen.className.replace('show', ''); 
+                paidScreen.className = paidScreen.className.replace('show', '');
             }, 3000);
             //take action PAID
-        return;
-        } 
+            return;
+        }
     }, false);
     //show the order info
     bitpay.onModalWillLeave(function () {
@@ -56,7 +57,7 @@ function showInvoice(id) {
             const snackbar = document.getElementById('snackbar');
             snackbar.className = 'show';
             setTimeout(function () {
-                snackbar.className = snackbar.className.replace('show', ''); 
+                snackbar.className = snackbar.className.replace('show', '');
             }, 3000);
             //take action, NOT PAID
         } //endif

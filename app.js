@@ -1,13 +1,13 @@
 (function() {
     const bitpayForm = document.getElementById('bitpayButton');
     bitpayForm.addEventListener('click', generateInvoice);
-
+    const redirectURL = 'https://justinkook.github.io/bitpayTestMerchant'
     const invoice = {
         currency: 'USD',
         price: 120.2,
         itemDesc: 'Marlboro 36 Count Party Pack',
         orderId: '10742',
-        redirectURL: 'https://justinkook.github.io/bitpayTestMerchant/',
+        redirectURL,
         // paymentCurrencies: [
         //   'BTC',
         //   'BCH',
@@ -25,7 +25,7 @@
         try {
             const authOptions = {
                 method: 'POST',
-                url: 'https://test.bitpay.com/invoices',
+                url: 'https://test.bitpay.com/api/invoice',
                 headers: {
                     'Authorization': 'Bearer RjZLS2pyUkd1elNONUh3N1NLUXRBRjJmVExXRFZzb3BaSkVWdUpnajZuZlI6',
                     'Content-Type': 'application/json',
@@ -37,7 +37,7 @@
             const { id } = data;
             console.log(id);
             // No Modal
-            // window.location.replace(`/invoice?v=3&id=${result.id}&lang=en-US`);
+            // window.location.replace(`${redirectURL}/invoice?v=3&id=${result.id}&lang=en-US`);
             // Modal
             bitpay.showInvoice(id);
         } catch (err) {

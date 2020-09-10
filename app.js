@@ -1,8 +1,7 @@
 const bitpayButton = document.getElementById('bitpayButton')
 bitpayButton.addEventListener('click', generateInvoice);
 
-async function generateInvoice(event) {
-    event.preventDefault();
+async function generateInvoice() {
     const price = document.getElementById('invoicePrice').value;
     const token = document.getElementById('apiToken').value;
     const redirectURL = 'https://justinkook.github.io/bitpayTestMerchant';

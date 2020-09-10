@@ -5,11 +5,12 @@
     async function generateInvoice(event) {
         event.preventDefault();
         try {
-            const invoiceId = await axios.post('https://staging.bitpay.com/checkout', {
+            const invoiceId = await axios.post('https://test.bitpay.com/checkout', {
                 action: 'checkout',
                 posData: '',
-                data: 'YzNHKdC1iQeZoR3gfFxF1N0JyhglsfO6hyFIawpMSUVdNRBBiu2A8/EdM6E0GqvQJ7VeSdeL5+KZTkEo+/eaiOR2mMH79hzVdCPfwHvcyECNibmB0WQTrqliB4abGlRYtplunFqpg2XnFzzcDSvHPQ=='
+                data: 'MbhGagET0n9UyKbaFqZIknRzK3swJ23NA/mZEUqZ22EY8xB5SLJ03kdzOaL34cLyCy6qGOPJF/4SkbdJLWJ2kDyH8Lz0ixvgf4pznZnutuqxZr3Hh/44az4MZR8Vq8hGdwX/6YrI8Ra/LNd08qXejQ=='
             });
+            console.log(invoiceId);
             bitpay.showInvoice(invoiceId);
         } catch (err) {
             console.log(err);

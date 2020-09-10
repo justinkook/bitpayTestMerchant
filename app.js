@@ -2,16 +2,44 @@
     const bitpayForm = document.getElementById('bitpayButton');
     bitpayForm.addEventListener('click', generateInvoice);
 
+    const invoice = {
+        currency: 'USD',
+        price: 120.2,
+        itemDesc: 'Marlboro 36 Count Party Pack',
+        orderId: '10742',
+        redirectURL: 'https://justinkook.github.io/bitpayTestMerchant/',
+        // paymentCurrencies: [
+        //   'BTC',
+        //   'BCH',
+        //   'XRP',
+        //   'ETH',
+        //   'USDC',
+        //   'GUSD',
+        //   'PAX',
+        //   'BUSD',
+        // ],
+      };
+
     async function generateInvoice(event) {
         event.preventDefault();
         try {
-            const invoiceId = await axios.post('https://bitpay.com/checkout', {
-                action: 'checkout',
-                posData: '',
-                data: 'KYC3WZipGErWjI5+utSbImOo4o7Ly6vgr+Bdumj2YhOaQ+nEA7F7EkbJF/P1yyHpT/pL5zabz7YpRG+isS257Vtvy0TiH2n+r4c+xbaC3KWtdqCYX1MHCoMe9HlUFpyC1Sro3BDZ5VtAI44EJrItjw=='
-            });
-            console.log(invoiceId);
-            bitpay.showInvoice(invoiceId);
+            const authOptions = {
+                method: 'POST',
+                url: 'https://test.bitpay.com/invoices',
+                headers: {
+                    'Authorization': 'Bearer RjZLS2pyUkd1elNONUh3N1NLUXRBRjJmVExXRFZzb3BaSkVWdUpnajZuZlI6',
+                    'Content-Type': 'application/json',
+                    'x-accept-version': '2.0.0'
+                },
+                body: JSON.stringify(invoice)
+              };
+            const { data } = await axios(authOptions);
+            const { id } = data;
+            console.log(id);
+            // No Modal
+            // window.location.replace(`/invoice?v=3&id=${result.id}&lang=en-US`);
+            // Modal
+            bitpay.showInvoice(id);
         } catch (err) {
             console.log(err);
         }

@@ -15,18 +15,15 @@ async function generateInvoice(event) {
         orderId: '10742',
         redirectURL
     };
+    const authHeaders = {
+        headers: {
+            'Content-Type': 'application/json',
+            'x-accept-version': '2.0.0'
+        }
+    };
     try {
-        const authOptions = {
-            method: 'POST',
-            url: 'https://staging.bitpay.com/invoices',
-            headers: {
-                'Content-Type': 'application/json',
-                'x-accept-version': '2.0.0'
-            },
-            body: JSON.stringify(invoice)
-        };
-        const { data } = await axios(authOptions);
-        const { id } = data;
+        const { data } = await axios.post('https://staging.bitpay.com/invoices', invoice, authHeaders);
+        const { id } = data.data;
         // Modal
         showInvoice(id);
     } catch (err) {

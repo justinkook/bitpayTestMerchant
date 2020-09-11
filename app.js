@@ -60,6 +60,5 @@ function showInvoice(id) {
         } //endif
     });
     //show the modal
-    bitpay.enableTestMode();
     bitpay.showInvoice(id);
 }

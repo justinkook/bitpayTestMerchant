@@ -31,19 +31,24 @@ async function generateInvoice(event) {
     }
 };
 
+function showSnackbar(status) {
+    const snackbar = document.getElementById('snackbar');
+    // Add the 'show' class to DIV
+    snackbar.className = `${status} show`;
+    snackbar.innerText = `${status}`;
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function () {
+        snackbar.className = snackbar.className.replace(`${status} show`, '');
+    }, 3000);
+}
+
 function showInvoice(id) {
     let is_paid = false
     window.addEventListener("message", function (event) {
         payment_status = event.data.status;
         if (payment_status == "paid") {
             is_paid = true
-            const paidScreen = document.getElementById('paidScreen');
-            // Add the 'show' class to DIV
-            paidScreen.className = 'show';
-            // After 3 seconds, remove the show class from DIV
-            setTimeout(function () {
-                paidScreen.className = paidScreen.className.replace('show', '');
-            }, 3000);
+            showSnackbar('success');
             //take action PAID
             return;
         }
@@ -51,11 +56,7 @@ function showInvoice(id) {
     //show the order info
     bitpay.onModalWillLeave(function () {
         if (is_paid == false) {
-            const snackbar = document.getElementById('snackbar');
-            snackbar.className = 'show';
-            setTimeout(function () {
-                snackbar.className = snackbar.className.replace('show', '');
-            }, 3000);
+            showSnackbar('fail');
             //take action, NOT PAID
         } //endif
     });

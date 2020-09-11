@@ -67,39 +67,10 @@ html {
     justify-content: center;
   }
 
-  #paidScreen {
-    visibility: hidden; /* Hidden by default. Visible on click */
-    background-color: #4caf50;
-    color: #fff; /* White text color */
-    text-align: center; /* Centered text */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 400px;
-    height: 400px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 40px;
-    transform: translate(-50%, -50%);
-    box-sizing: border-box;
-    border-radius: 10px;
-    z-index: 99;
-    text-transform: uppercase;
-    font-weight: 800;
-    font-size: 26px;
-  }
-  
-  #paidScreen.show {
-    visibility: visible; /* Show the snackbar */
-  }
-
-  /* The snackbar - position it at the bottom and in the middle of the screen */
-  #snackbar {
+  #snackbar { 
     visibility: hidden; /* Hidden by default. Visible on click */
     min-width: 250px; /* Set a default minimum width */
     margin-left: -125px; /* Divide value of min-width by 2 */
-    background-color: #f44336; /* Black background color */
     color: #fff; /* White text color */
     text-align: center; /* Centered text */
     border-radius: 2px; /* Rounded borders */
@@ -108,6 +79,14 @@ html {
     z-index: 1; /* Add a z-index if needed */
     left: 50%; /* Center the snackbar */
     top: 30px; /* 30px from the bottom */
+  }
+
+  #snackbar.success {
+    background-color: #4caf50;
+  }
+
+  #snackbar.fail {
+    background-color: #f44336;
   }
   
   /* Show the snackbar when clicking on a button (class added with JavaScript) */

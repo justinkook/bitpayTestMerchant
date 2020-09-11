@@ -11,7 +11,7 @@ async function generateInvoice(event) {
         currency: 'USD',
         price,
         token,
-        itemDesc: 'Marlboro 36 Count Party Pack',
+        itemDesc: `Kook's Kookies`,
         orderId: '10742',
         redirectURL
     };
@@ -22,7 +22,7 @@ async function generateInvoice(event) {
         }
     };
     try {
-        const { data } = await axios.post('https://staging.bitpay.com/invoices', invoice, authHeaders);
+        const { data } = await axios.post('https://test.bitpay.com/invoices', invoice, authHeaders);
         const { id } = data.data;
         // Modal
         showInvoice(id);
@@ -60,5 +60,6 @@ function showInvoice(id) {
         } //endif
     });
     //show the modal
+    bitpay.enableTestMode();
     bitpay.showInvoice(id);
 }

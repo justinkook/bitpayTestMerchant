@@ -80,6 +80,9 @@ html {
     box-sizing: border-box;
     border-radius: 10px;
     z-index: 99;
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 26px;
   }
   
   #paidScreen.show {

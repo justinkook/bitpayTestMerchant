@@ -60,6 +60,7 @@ function showInvoice(id) {
         } //endif
     });
     //show the modal
+    bitpay.setApiUrlPrefix('https://staging.bitpay.com');
     bitpay.enableTestMode();
     bitpay.showInvoice(id);
 }

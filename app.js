@@ -9,7 +9,7 @@ async function generateInvoice(event) {
     const invoice = {
         currency: 'USD',
         price,
-        token: '9THpC89zyoQagdGxhjo9aAKTJukJtP5jPrfeBxtVNp8f',
+        token: '3vfcpo1BPch7J3uWRoHrLBwhJQPNfob8QyHfj6G9yjDK',
         itemDesc: `Kook's Kookies`,
         orderId: '10742',
         redirectURL
@@ -21,7 +21,7 @@ async function generateInvoice(event) {
         }
     };
     try {
-        const { data } = await axios.post('https://staging.bitpay.com/invoices', invoice, authHeaders);
+        const { data } = await axios.post('https://test.bitpay.com/invoices', invoice, authHeaders);
         const { id } = data.data;
         // Modal
         showInvoice(id);
@@ -60,6 +60,6 @@ function showInvoice(id) {
         } //endif
     });
     //show the modal
-    bitpay.setApiUrlPrefix('https://staging.bitpay.com');
+    bitpay.setApiUrlPrefix('https://test.bitpay.com');
     bitpay.showInvoice(id);
 }

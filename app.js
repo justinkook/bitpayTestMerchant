@@ -5,12 +5,11 @@ bitpayButton.addEventListener('click', generateInvoice);
 async function generateInvoice(event) {
     event.preventDefault();
     const price = document.getElementById('invoicePrice').value;
-    const token = document.getElementById('apiToken').value;
     const redirectURL = 'https://justinkook.github.io/bitpayTestMerchant';
     const invoice = {
         currency: 'USD',
         price,
-        token,
+        token: '9THpC89zyoQagdGxhjo9aAKTJukJtP5jPrfeBxtVNp8f',
         itemDesc: `Kook's Kookies`,
         orderId: '10742',
         redirectURL
@@ -22,7 +21,7 @@ async function generateInvoice(event) {
         }
     };
     try {
-        const { data } = await axios.post('https://test.bitpay.com/invoices', invoice, authHeaders);
+        const { data } = await axios.post('https://staging.bitpay.com/invoices', invoice, authHeaders);
         const { id } = data.data;
         // Modal
         showInvoice(id);

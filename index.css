@@ -62,6 +62,11 @@ html {
     font-size: 12px;
   }
 
+  #bitpayButton {
+    display: flex;
+    justify-content: center;
+  }
+
   #paidScreen {
     visibility: hidden; /* Hidden by default. Visible on click */
     background-color: #4caf50;

@@ -9,8 +9,8 @@ async function generateInvoice(event) {
     const invoice = {
         currency: 'USD',
         price,
-        token: '9THpC89zyoQagdGxhjo9aAKTJukJtP5jPrfeBxtVNp8f',
-        itemDesc: `Kook's Kookies`,
+        token: 'Hfys1u5Hy3DXLk4MoEwxayiSdfx62QQf4PDpVCrNc1sX',
+        itemDesc: `Johnathan's Kookies`,
         orderId: '10742',
         redirectURL
     };
